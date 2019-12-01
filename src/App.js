@@ -34,11 +34,7 @@ class App extends React.Component {
       .then(responseData => this.setState({ html: responseData }));
   }
   render() {
-    return (
-      <div>
-        <HoraHospiContainer state={this.state} />,
-      </div>
-    );
+    return <HoraHospiContainer state={this.state} />;
   }
 }
 

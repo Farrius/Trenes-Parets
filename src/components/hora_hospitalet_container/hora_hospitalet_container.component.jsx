@@ -1,15 +1,36 @@
 import React from "react";
 
 export const HoraHospiContainer = props => {
-  const regex = /<div class="(sortida|arribada|durada)">([0-9,:].*)</;
+  const regex = /<div class="(sortida|arribada|durada)">([0-9,:].*)</gm;
   let m;
-  if ((m = regex.exec(props.state.html)) !== null) {
-    console.log("today", m);
-    m.forEach((match, groupIndex) => {
-      console.log(`Regex: ${groupIndex}:${match} `);
-    });
-  } else {
-    console.log("El servicio no esta disponible en estos momentos");
+  const listaSalida = [];
+  while ((m = regex.exec(props.state.html)) !== null) {
+    // This is necessary to avoid infinite loops with zero-width matches
+    if (m.index === regex.lastIndex) {
+      regex.lastIndex++;
+    }
+    // Si la class es sortida nos quedamos con el valor que hemos conseguido gracias al regex
+    if (m[1] === "sortida") listaSalida.unshift(m[2]);
   }
-  return <h1>hola</h1>;
+  //Conseguimos la hora actual en string
+  const fecha = new Date();
+  let minutos = fecha.getUTCMinutes();
+  if (minutos < 10) minutos = `0${minutos}`;
+  const horas = fecha.getUTCHours() + 1;
+  const horaActual = `${horas}:${minutos}`;
+  const horaActualNum = pasarStringDeTiempoNumero(horaActual);
+  //Comparamos los tiempos para saber cual sera el proximo tren
+  let proximaSalida;
+  listaSalida.forEach(cur => {
+    const curNum = pasarStringDeTiempoNumero(cur);
+    //Al haber puesto las horas mas peques al final de la array al coger la hora mas grande que esta lo mas a la dercha posible nos da nuestra hora
+    if (curNum > horaActualNum) proximaSalida = cur;
+  });
+  return <h1>{proximaSalida}</h1>;
+};
+// Funcion para pasar el tiempo de string al total de minutos
+const pasarStringDeTiempoNumero = string => {
+  const listaTiempos = string.split(":");
+  const horas = parseInt(listaTiempos[0]) * 60;
+  return horas + parseInt(listaTiempos[1]);
 };
