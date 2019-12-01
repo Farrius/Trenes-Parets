@@ -9,7 +9,9 @@ class App extends React.Component {
     this.state = {
       html: undefined,
       url: {
-        path: "http://rodalies.gencat.cat/es/horaris"
+        path: "http://rodalies.gencat.cat/es/horaris",
+        origen: "77005",
+        desti: "72305"
       }
     };
   }
@@ -25,7 +27,7 @@ class App extends React.Component {
     //Hacemos un post request con fetch con la fecha actual i con origen Parets del Valles destino Hospitalet de llobregat
     fetch(this.state.url.path, {
       method: "POST",
-      body: `origen=77005&desti=72305&dataViatge=${dia}%2F${mes}%2F${year}&horaIni=${hora}&lang=es&cercaRodalies=true`,
+      body: `origen=${this.state.url.origen}&desti=${this.state.url.desti}&dataViatge=${dia}%2F${mes}%2F${year}&horaIni=${hora}&lang=es&cercaRodalies=true`,
       headers: {
         "Content-Type": "application/x-www-form-urlencoded"
       }
