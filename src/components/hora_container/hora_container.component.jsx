@@ -1,6 +1,6 @@
 import React from "react";
 
-export const HoraHospiContainer = props => {
+export const HoraContainer = props => {
   const regex = /<div class="(sortida|arribada|durada)">([0-9,:].*)</gm;
   let m;
   const listaSalida = [];
