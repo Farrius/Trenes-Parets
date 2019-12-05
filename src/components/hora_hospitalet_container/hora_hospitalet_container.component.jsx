@@ -26,7 +26,7 @@ export const HoraHospiContainer = props => {
     //Al haber puesto las horas mas peques al final de la array al coger la hora mas grande que esta lo mas a la dercha posible nos da nuestra hora
     if (curNum > horaActualNum) proximaSalida = cur;
   });
-  return <h1>{proximaSalida}</h1>;
+  return <div className="hora_container">{proximaSalida}</div>;
 };
 // Funcion para pasar el tiempo de string al total de minutos
 const pasarStringDeTiempoNumero = string => {
