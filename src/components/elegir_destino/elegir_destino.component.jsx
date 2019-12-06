@@ -1,10 +1,10 @@
 import React from "react";
 
-export const ElegirDestino = () => {
+export const ElegirDestino = props => {
   return (
     <form>
       <div>
-        <label for="destino">Destino</label>
+        <label htmlFor="destino">Destino</label>
         <select id="destino" name="desti">
           <option value="">Seleccioneu una estació</option>
           <option value="77106">Balenyà-Els Hostalets</option>
@@ -41,9 +41,6 @@ export const ElegirDestino = () => {
           <option value="77307">Urtx-Alp</option>
           <option value="77109">Vic</option>
         </select>
-      </div>
-      <div>
-        <input type="submit" />
       </div>
     </form>
   );
