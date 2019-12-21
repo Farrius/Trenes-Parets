@@ -4,7 +4,7 @@ export const HoraContainer = props => {
   const regex = /<div class="(sortida|arribada|durada)">([0-9,:].*)</gm;
   let m;
   const listaSalida = [];
-  while ((m = regex.exec(props.state.html)) !== null) {
+  while ((m = regex.exec(props.htmlResponse)) !== null) {
     // This is necessary to avoid infinite loops with zero-width matches
     if (m.index === regex.lastIndex) {
       regex.lastIndex++;
