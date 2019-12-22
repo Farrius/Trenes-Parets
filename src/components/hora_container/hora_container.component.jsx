@@ -14,9 +14,9 @@ export const HoraContainer = props => {
   }
   //Conseguimos la hora actual en string
   const fecha = new Date();
-  let minutos = fecha.getUTCMinutes();
+  let minutos = fecha.getMinutes();
   if (minutos < 10) minutos = `0${minutos}`;
-  const horas = fecha.getUTCHours() + 1;
+  const horas = fecha.getHours();
   const horaActual = `${horas}:${minutos}`;
   const horaActualNum = pasarStringDeTiempoNumero(horaActual);
   //Comparamos los tiempos para saber cual sera el proximo tren
