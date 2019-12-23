@@ -16,7 +16,7 @@ class App extends React.Component {
       },
       //Paratmetros del fetch
       origen: "77005",
-      desti: "78802"
+      desti: "77105"
     };
     //Hacemos la call con el bind para que no nos de error en el eventlistener
   }
@@ -48,10 +48,10 @@ class App extends React.Component {
   }
   //Method para cambiar el state despues de un canvio en el select componnent
   seleccionarParada = e => {
-    this.setState({ desti: e.target.value }, () => console.log(this.state));
+    console.log(e.target.value);
+    this.setState({ desti: e.target.value }, () => this.pedirHorariosAPI());
   };
   render() {
-    this.pedirHorariosAPI();
     return (
       <div className="container">
         <HoraContainer
