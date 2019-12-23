@@ -13,11 +13,9 @@ export const HoraContainer = props => {
     if (m[1] === "sortida") listaSalida.unshift(m[2]);
   }
   //Conseguimos la hora actual en string
-  const fecha = new Date();
-  let minutos = fecha.getMinutes();
-  if (minutos < 10) minutos = `0${minutos}`;
-  const horas = fecha.getHours();
-  const horaActual = `${horas}:${minutos}`;
+  const tiempos = props.conseguirTiempos();
+  if (tiempos.minutos < 10) tiempos.minutos = `0${tiempos.minutos}`;
+  const horaActual = `${tiempos.hora}:${tiempos.minutos}`;
   const horaActualNum = pasarStringDeTiempoNumero(horaActual);
   //Comparamos los tiempos para saber cual sera el proximo tren
   let proximaSalida;

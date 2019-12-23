@@ -16,26 +16,17 @@ class App extends React.Component {
       },
       //Paratmetros del fetch
       origen: "77005",
-      desti: "78802",
-      //El destino que hace display
-      destino: ""
+      desti: "78802"
     };
     //Hacemos la call con el bind para que no nos de error en el eventlistener
-    this.handleChange = this.handleChange.bind(this);
   }
-  componentDidMount() {
-    //Establecemos la fecha actual i las variables para esta
-    const fecha = new Date();
-    const { hora, dia, mes, year } = {
-      hora: fecha.getHours(),
-      dia: fecha.getDate(),
-      mes: fecha.getMonth() + 1,
-      year: fecha.getFullYear()
-    };
+  pedirHorariosAPI() {
+    //LLamamos el method para conseguir los tiempos
+    const tiempos = this.conseguirTiempo();
     //Hacemos un post request con fetch con la fecha actual i con origen Parets del Valles destino Hospitalet de llobregat
     fetch(this.state.url.path, {
       method: "POST",
-      body: `origen=${this.state.origen}&desti=${this.state.desti}&dataViatge=${dia}%2F${mes}%2F${year}&horaIni=${hora}&lang=ca&cercaRodalies=true`,
+      body: `origen=${this.state.origen}&desti=${this.state.desti}&dataViatge=${tiempos.dia}%2F${tiempos.mes}%2F${tiempos.year}&horaIni=${tiempos.hora}&lang=ca&cercaRodalies=true`,
       headers: {
         "Content-Type": "application/x-www-form-urlencoded"
       }
@@ -43,15 +34,31 @@ class App extends React.Component {
       .then(response => response.text())
       .then(responseData => this.setState({ html: responseData }));
   }
-  //Method para cambiar el state despues de un canvio
-  handleChange(event) {
-    this.setState({ desti: event.target.value });
-    console.log(this.state);
+  //Funcion para que nos de el tiempo actual que devulve un objeto con todos los datos de la hora
+  conseguirTiempo() {
+    const fecha = new Date();
+    const objTiempos = {
+      minutos: fecha.getMinutes(),
+      hora: fecha.getHours(),
+      dia: fecha.getDate(),
+      mes: fecha.getMonth() + 1,
+      year: fecha.getFullYear()
+    };
+    return objTiempos;
   }
+  //Method para cambiar el state despues de un canvio en el select componnent
+  seleccionarParada = e => {
+    this.setState({ desti: e.target.value }, () => console.log(this.state));
+  };
   render() {
+    this.pedirHorariosAPI();
     return (
       <div className="container">
-        <HoraContainer htmlResponse={this.state.html} />
+        <HoraContainer
+          htmlResponse={this.state.html}
+          conseguirTiempos={this.conseguirTiempo}
+        />
+        <ElegirDestino handleChange={this.seleccionarParada} />
       </div>
     );
   }

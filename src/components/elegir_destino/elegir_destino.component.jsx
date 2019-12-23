@@ -5,7 +5,7 @@ export const ElegirDestino = props => {
     <form>
       <div>
         <label htmlFor="destino">Destino</label>
-        <select id="destino" name="desti">
+        <select id="destino" name="desti" onChange={props.handleChange}>
           <option value="">Seleccioneu una estació</option>
           <option value="77106">Balenyà-Els Hostalets</option>
           <option value="77107">Balenyà-Tona-Seva</option>
