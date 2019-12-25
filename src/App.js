@@ -52,7 +52,7 @@ class App extends React.Component {
     this.setState({ desti: e.target.value }, () => this.pedirHorariosAPI());
   };
   render() {
-    //El render del html
+    //El render del htmla
     return (
       <div className="app_container">
         <div className="header_container">Trens Parets del Vallès</div>
