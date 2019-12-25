@@ -3,7 +3,6 @@ import React from "react";
 import "./hora_container.component.css";
 
 export const HoraContainer = props => {
-  console.log(props.htmlResponse);
   const regex = /<div class="(sortida|arribada|durada)">([0-9,:].*)</gm;
   let m;
   const listaSalida = [];

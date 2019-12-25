@@ -48,7 +48,6 @@ class App extends React.Component {
   }
   //Method para cambiar el state despues de un canvio en el select componnent
   seleccionarParada = e => {
-    console.log(e.target.value);
     this.setState({ desti: e.target.value }, () => this.pedirHorariosAPI());
   };
   render() {
