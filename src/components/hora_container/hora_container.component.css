@@ -1,0 +1,9 @@
+.hora_container_num {
+  grid-row: 3/4;
+  font-size: 8rem;
+}
+
+.hora_container_string {
+  grid-row: 3/4;
+  font-size: 2rem;
+}

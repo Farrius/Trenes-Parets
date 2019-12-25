@@ -1,0 +1,34 @@
+.app_container {
+  width: 75vw;
+  height: 100vh;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: 5% 1fr 3fr 1fr 10% 5%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+/*container del header*/
+.header_container {
+  grid-row: 2/3;
+  font-size: 2rem;
+}
+/* container de la eleccion de destinos*/
+.destino_salida_conatiner {
+  grid-row: 4/5;
+  display: flex;
+  width: 80vw;
+}
+.origen_container {
+  flex: 1;
+  margin: 10px;
+}
+
+/*container del logo*/
+.logo_parets_container {
+  grid-row: 5/6;
+}
+#logo_parets {
+  height: 2.7616rem;
+  width: 7.8333rem;
+}

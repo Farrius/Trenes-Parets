@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./hora_container.component.css";
+
 export const HoraContainer = props => {
   console.log(props.htmlResponse);
   const regex = /<div class="(sortida|arribada|durada)">([0-9,:].*)</gm;
@@ -28,10 +30,11 @@ export const HoraContainer = props => {
   // Manejamos el error
   if (proximaSalida === undefined && props.htmlResponse !== undefined) {
     proximaSalida =
-      "Horarios no disponibles. Consulte las afectaciones programadas.";
+      "Horaris no disponibles, consulteu les afeccions programades.";
+    return <div className="hora_container_string">{proximaSalida}</div>;
   }
 
-  return <div className="hora_container">{proximaSalida}</div>;
+  return <div className="hora_container_num">{proximaSalida}</div>;
 };
 
 // Funcion para pasar el tiempo de string al total de minutos
